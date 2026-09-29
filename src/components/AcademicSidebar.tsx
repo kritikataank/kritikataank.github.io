@@ -83,10 +83,10 @@ export const AcademicSidebar: React.FC = () => {
       </div>
 
       {/* 2. FULL ACADEMIC SIDEBAR FOR DESKTOP (Visible only on lg+) */}
-      <aside className="hidden lg:block w-[240px] shrink-0 text-sm">
+      <aside className="hidden lg:block w-[260px] shrink-0 text-sm">
         <div className="flex flex-col items-start text-left">
           {/* Profile Avatar / Photo using src/assets/images/meeee.png */}
-          <div className="w-[190px] h-[190px] rounded-full overflow-hidden border border-[#d1d5db] shadow-2xs mb-4 bg-slate-100 flex items-center justify-center">
+          <div className="w-[200px] h-[200px] rounded-full overflow-hidden border border-[#d1d5db] shadow-2xs mb-4 bg-slate-100 flex items-center justify-center">
             <img
               src={profilePhoto || PROFILE.avatarUrl}
               alt={PROFILE.name}

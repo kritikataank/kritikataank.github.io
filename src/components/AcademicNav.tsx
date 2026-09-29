@@ -32,7 +32,7 @@ export const AcademicNav: React.FC<AcademicNavProps> = ({
 
   return (
     <header className="w-full bg-white border-b border-[#e1e4e8] sticky top-0 z-50">
-      <div className="max-w-[1020px] mx-auto px-4 sm:px-6 flex items-center justify-between h-14">
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-14">
         {/* Site Title */}
         <button
           onClick={() => onSelectTab('about')}

@@ -41,7 +41,7 @@ export const PROFILE = {
     email: '',
     github: 'https://github.com/kritikataank',
     linkedin: 'https://linkedin.com/in/kritikataank',
-    scholar: 'https://scholar.google.com',
+    scholar: 'https://scholar.google.com/citations?view_op=list_works&hl=en&hl=en&user=71UvuAcAAAAJ',
     twitter: '',
     website: 'https://kritikataank.github.io',
   },

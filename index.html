@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kritika Taank · AI/ML Engineer & Aspiring ML Researcher</title>
+    <meta name="description" content="Personal academic and AI/ML portfolio of Kritika Taank — Associate Software Engineer at Nokia and aspiring machine learning researcher in trustworthy AI, reinforcement learning, and causal ML." />
+    <meta property="og:title" content="Kritika Taank · AI/ML Engineer & Aspiring ML Researcher" />
+    <meta property="og:description" content="Personal academic and AI/ML portfolio of Kritika Taank — Associate Software Engineer at Nokia and aspiring machine learning researcher in trustworthy AI, reinforcement learning, and causal ML." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('portfolio-theme');
+          var isDark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (isDark) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="bg-white dark:bg-[#0A101D] text-[#0F1E36] dark:text-[#F1F5F9] antialiased selection:bg-[#E0E7FF] selection:text-[#0F1E36] dark:selection:bg-[#1E3A8A] dark:selection:text-[#FFFFFF] transition-colors duration-200">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

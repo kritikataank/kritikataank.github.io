@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --global-font: -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --global-mono-font: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  }
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  color: #2e343b; /* Charcoal body text */
+  background-color: #ffffff;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Charcoal & Black academic link style */
+a {
+  color: #121417; /* Deep charcoal black */
+  text-decoration: none;
+  transition: color 0.15s ease-in-out;
+}
+
+a:hover {
+  color: #000000;
+  text-decoration: underline;
+}
+
+/* Headings in bold black / dark charcoal */
+h1, h2, h3, h4, h5, h6 {
+  font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  color: #121417;
+  line-height: 1.25;
+}
+
+/* Academic section bottom line divider */
+.academic-heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #121417;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 0.35rem;
+  margin-top: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f3f4f6;
+}
+::-webkit-scrollbar-thumb {
+  background: #9ca3af;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}

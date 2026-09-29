@@ -1,0 +1,8 @@
+{
+  "name": "Remix The Private Museum of Kritika Taank",
+  "description": "A collection of software, research, ideas, books, and things worth remembering. Contemporary digital museum and personal archive of software engineer and ML researcher Kritika Taank.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

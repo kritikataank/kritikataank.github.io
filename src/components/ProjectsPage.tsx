@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { PROJECTS } from '../data/projects';
 
 export const ProjectsPage: React.FC = () => {
-  const [filter, setFilter] = useState<'all' | 'ai-ml' | 'research'>('all');
+  const [filter, setFilter] = useState<'all' | 'research'>('all');
 
   const filteredProjects = PROJECTS.filter((p) => {
     if (filter === 'all') return true;
-    return p.category === filter;
+    return p.category === 'research';
   });
+
+  const researchProjectsCount = PROJECTS.filter((p) => p.category === 'research').length;
 
   return (
     <div className="space-y-6 text-[#2e343b]">
@@ -17,22 +19,31 @@ export const ProjectsPage: React.FC = () => {
           Academic research prototypes, machine learning systems, and software engineering implementations.
         </p>
 
-        {/* Filter buttons */}
+        {/* Filter buttons: Only All and Research Projects */}
         <div className="flex items-center space-x-2 text-xs mb-4">
           <span className="text-[#586069] font-medium">Filter:</span>
-          {(['all', 'ai-ml', 'research'] as const).map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setFilter(cat)}
-              className={`px-2.5 py-0.5 border rounded-xs cursor-pointer transition-colors ${
-                filter === cat
-                  ? 'border-[#121417] bg-[#121417] text-white font-bold'
-                  : 'border-[#d1d5db] text-[#586069] hover:bg-[#f6f8fa] hover:text-[#121417]'
-              }`}
-            >
-              {cat === 'all' ? 'All' : cat === 'ai-ml' ? 'AI / ML Projects' : 'Research Projects'}
-            </button>
-          ))}
+          <button
+            type="button"
+            onClick={() => setFilter('all')}
+            className={`px-2.5 py-0.5 border rounded-xs cursor-pointer transition-colors ${
+              filter === 'all'
+                ? 'border-[#121417] bg-[#121417] text-white font-bold'
+                : 'border-[#d1d5db] text-[#586069] hover:bg-[#f6f8fa] hover:text-[#121417]'
+            }`}
+          >
+            All ({PROJECTS.length})
+          </button>
+          <button
+            type="button"
+            onClick={() => setFilter('research')}
+            className={`px-2.5 py-0.5 border rounded-xs cursor-pointer transition-colors ${
+              filter === 'research'
+                ? 'border-[#121417] bg-[#121417] text-white font-bold'
+                : 'border-[#d1d5db] text-[#586069] hover:bg-[#f6f8fa] hover:text-[#121417]'
+            }`}
+          >
+            Research Projects ({researchProjectsCount})
+          </button>
         </div>
       </div>
 
@@ -44,9 +55,11 @@ export const ProjectsPage: React.FC = () => {
                 {project.title}
               </h3>
               <div className="flex items-center gap-2 mt-1 sm:mt-0">
-                <span className="text-xs px-2 py-0.5 bg-[#f6f8fa] text-[#121417] font-medium rounded-xs border border-[#e1e4e8]">
-                  {project.categoryLabel}
-                </span>
+                {project.category === 'research' && (
+                  <span className="text-xs px-2 py-0.5 bg-[#f6f8fa] text-[#121417] font-medium rounded-xs border border-[#e1e4e8]">
+                    Research Project
+                  </span>
+                )}
                 {project.githubUrl && (
                   <a
                     href={project.githubUrl}
@@ -54,7 +67,7 @@ export const ProjectsPage: React.FC = () => {
                     rel="noreferrer"
                     className="text-xs text-[#121417] hover:text-black hover:underline font-medium"
                   >
-                    [Code]
+                    [Source Code]
                   </a>
                 )}
               </div>

@@ -66,11 +66,13 @@ export const CVModal: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
               </div>
 
               <div className="text-xs font-mono space-y-1 text-slate-600 dark:text-slate-400">
-                <div>
-                  <a href={`mailto:${PROFILE.contact.email}`} className="text-[#1E3A8A] dark:text-blue-400 hover:underline">
-                    {PROFILE.contact.email}
-                  </a>
-                </div>
+                {PROFILE.contact.email && (
+                  <div>
+                    <a href={`mailto:${PROFILE.contact.email}`} className="text-[#1E3A8A] dark:text-blue-400 hover:underline">
+                      {PROFILE.contact.email}
+                    </a>
+                  </div>
+                )}
                 <div className="flex flex-wrap items-center gap-2 text-[11px]">
                   <a href={PROFILE.contact.linkedin} target="_blank" rel="noreferrer" className="hover:underline">
                     linkedin/kritikataank

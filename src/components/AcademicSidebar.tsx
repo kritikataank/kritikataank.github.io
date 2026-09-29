@@ -33,7 +33,7 @@ export const AcademicSidebar: React.FC = () => {
               {PROFILE.researchFocusTagline}
             </p>
 
-            {/* Quick Profile Links in clean dark charcoal */}
+            {/* Quick Profile Links */}
             <div className="flex flex-wrap items-center gap-3.5 mt-2 text-xs text-[#121417]">
               {PROFILE.contact.scholar && (
                 <a
@@ -104,14 +104,16 @@ export const AcademicSidebar: React.FC = () => {
           <p className="text-sm text-[#494e52] mt-1 leading-normal font-normal">
             {PROFILE.title}
           </p>
-          <p className="text-xs text-[#586069] mt-0.5">
+          <p className="text-xs text-[#586069] mt-0.5 pb-3 border-b border-[#e1e4e8] w-full">
             {PROFILE.role}, {PROFILE.organization}
           </p>
 
-          {/* Bio text snippet */}
-          <div className="text-xs text-[#586069] mt-3 pb-3 border-b border-[#e1e4e8] w-full text-left leading-relaxed">
-            {PROFILE.shortBio}
-          </div>
+          {/* Bio text snippet if present */}
+          {PROFILE.shortBio && (
+            <div className="text-xs text-[#586069] mt-3 pb-3 border-b border-[#e1e4e8] w-full text-left leading-relaxed">
+              {PROFILE.shortBio}
+            </div>
+          )}
 
           {/* Metadata Links List - Clean slate & charcoal styling */}
           <ul className="w-full mt-3 space-y-2 text-xs text-[#586069]">

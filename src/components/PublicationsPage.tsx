@@ -18,11 +18,10 @@ export const PublicationsPage: React.FC = () => {
       </div>
 
       <div className="space-y-6">
-        {PUBLICATIONS.map((pub, idx) => (
+        {PUBLICATIONS.map((pub) => (
           <div key={pub.id} className="text-sm pb-5 border-b border-[#e1e4e8] last:border-b-0">
-            {/* Paper Title with Direct Link */}
+            {/* Paper Title with Direct Link (Numbers 1 and 2 removed) */}
             <h3 className="font-bold text-base text-[#121417] leading-snug">
-              {idx + 1}.{' '}
               {pub.paperUrl ? (
                 <a
                   href={pub.paperUrl}

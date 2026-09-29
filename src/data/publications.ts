@@ -19,7 +19,7 @@ export const PUBLICATIONS: PublicationItem[] = [
     technologies: ['JavaScript', 'Node.js', 'Socket.IO', 'Lightweight Cryptography', 'PRESENT / SIMON', 'RSA'],
     projectTitle: 'CipherChat – Secure Mobile Cloud Communication',
     paperUrl: 'https://www.ijraset.com/best-journal/innovative-security-framework-for-enhancing-data-protection-in-mobile-cloud-environments',
-    codeUrl: 'https://github.com/kritikataank',
+    codeUrl: 'https://github.com/kritikataank/Innovative-Security-Framework-for-Enhancing-Data-Protection-in-Mobile-Cloud-Environments',
     bibtex: `@article{suresh2024security,
   title     = {Innovative Security Framework for Enhancing Data Protection in Mobile Cloud Environments [J]},
   author    = {Suresh, P. and Taank, Kritika and Kumar, Akshay and Patel, Muskan},

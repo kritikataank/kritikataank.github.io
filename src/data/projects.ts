@@ -16,7 +16,7 @@ export const PROJECTS: ProjectItem[] = [
     technologies: ['Python', 'MongoDB', 'Mistral LLM', 'ML Model', 'FastAPI'],
     keyResult:
       'Winner – Smart India Hackathon 2024 (MSDE, Govt. of India); selected in top 2.4% out of 298+ national ideas.',
-    githubUrl: 'https://github.com/kritikataank',
+    githubUrl: 'https://github.com/kritikataank/AI-Enhanced-Career-Guidance-System',
     featured: true,
   },
   {
@@ -34,7 +34,7 @@ export const PROJECTS: ProjectItem[] = [
     technologies: ['Python', 'InceptionV3', 'LIME', 'Streamlit', 'Computer Vision'],
     keyResult:
       'Delivered real-time explainable insights for disaster preparedness during Smart India Hackathon 2023.',
-    githubUrl: 'https://github.com/kritikataank',
+    githubUrl: 'https://colab.research.google.com/drive/1cloL9OmGOyEeyyoCk3GriydlNy4RH_ka?usp=sharing',
     featured: true,
   },
   {
@@ -52,7 +52,7 @@ export const PROJECTS: ProjectItem[] = [
     technologies: ['Python', 'PennyLane', 'QML', 'OpenEnv', 'Random Forest', 'Streamlit'],
     keyResult:
       'Top 10 Finalist at the QuantumX Hackathon for hybrid quantum-classical interaction risk modeling.',
-    githubUrl: 'https://github.com/kritikataank',
+    githubUrl: 'https://github.com/kritikataank/Drug-Interaction-Optimization-using-Quantum-Simulation',
     featured: true,
   },
   {
@@ -70,7 +70,7 @@ export const PROJECTS: ProjectItem[] = [
     technologies: ['Python', 'PyTorch', 'BERT', 'NLP', 'Transformers', 'HuggingFace'],
     keyResult:
       'Achieved robust validation accuracy and balanced precision-recall F1 score on highly skewed distribution.',
-    githubUrl: 'https://github.com/kritikataank',
+    githubUrl: 'https://github.com/kritikataank/NLP-Interestship5.0',
     featured: false,
   },
   {
@@ -88,7 +88,7 @@ export const PROJECTS: ProjectItem[] = [
     technologies: ['JavaScript', 'Node.js', 'Socket.IO', 'Cryptography', 'PRESENT Cipher', 'SIMON Cipher'],
     keyResult:
       'Published in the International Journal for Research in Applied Science and Engineering Technology (IJRASET), 12(12):2108-14 (2024).',
-    githubUrl: 'https://github.com/kritikataank',
+    githubUrl: 'https://github.com/kritikataank/Innovative-Security-Framework-for-Enhancing-Data-Protection-in-Mobile-Cloud-Environments',
     featured: true,
     publicationRef: 'Innovative Security Framework for Enhancing Data Protection in Mobile Cloud Environments',
   },

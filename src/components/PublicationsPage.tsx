@@ -60,31 +60,6 @@ export const PublicationsPage: React.FC = () => {
             <p className="text-xs text-[#586069] mt-2 leading-relaxed">
               <strong className="text-[#121417]">Abstract:</strong> {pub.abstract}
             </p>
-
-            {/* Action Buttons: Paper and Code only */}
-            <div className="mt-3 flex items-center space-x-2 text-xs font-mono">
-              {pub.paperUrl && (
-                <a
-                  href={pub.paperUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="px-2.5 py-0.5 border border-[#d1d5db] rounded-xs text-[#121417] hover:bg-[#f6f8fa] hover:text-black transition-colors"
-                >
-                  [Paper]
-                </a>
-              )}
-
-              {pub.codeUrl && (
-                <a
-                  href={pub.codeUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="px-2.5 py-0.5 border border-[#d1d5db] rounded-xs text-[#121417] hover:bg-[#f6f8fa] hover:text-black transition-colors"
-                >
-                  [Code]
-                </a>
-              )}
-            </div>
           </div>
         ))}
       </div>

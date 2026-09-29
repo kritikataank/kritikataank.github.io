@@ -31,7 +31,7 @@ export const AcademicNav: React.FC<AcademicNavProps> = ({
   ];
 
   return (
-    <header className="w-full bg-white border-b border-[#e5e7eb] sticky top-0 z-50">
+    <header className="w-full bg-white border-b border-[#e1e4e8] sticky top-0 z-50">
       <div className="max-w-[1020px] mx-auto px-4 sm:px-6 flex items-center justify-between h-14">
         {/* Site Title */}
         <button
@@ -52,7 +52,7 @@ export const AcademicNav: React.FC<AcademicNavProps> = ({
                 className={`px-3 py-1.5 text-sm font-medium transition-colors focus:outline-hidden cursor-pointer ${
                   isActive
                     ? 'text-[#121417] font-bold border-b-2 border-[#121417]'
-                    : 'text-[#4b5563] hover:text-[#121417]'
+                    : 'text-[#586069] hover:text-[#121417]'
                 }`}
               >
                 {tab.label}
@@ -65,7 +65,7 @@ export const AcademicNav: React.FC<AcademicNavProps> = ({
         <button
           type="button"
           onClick={() => setMobileMenuOpen((prev) => !prev)}
-          className="md:hidden p-2 rounded-xs text-[#121417] hover:bg-[#f3f4f6] border border-[#d1d5db] focus:outline-hidden cursor-pointer flex items-center justify-center transition-colors"
+          className="md:hidden p-2 rounded-xs text-[#121417] hover:bg-[#f6f8fa] border border-[#d1d5db] focus:outline-hidden cursor-pointer flex items-center justify-center transition-colors"
           aria-label="Toggle navigation menu"
           aria-expanded={mobileMenuOpen}
         >
@@ -79,7 +79,7 @@ export const AcademicNav: React.FC<AcademicNavProps> = ({
 
       {/* Mobile Burger Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-[#e5e7eb] bg-white px-4 py-3 space-y-1.5 shadow-md">
+        <div className="md:hidden border-t border-[#e1e4e8] bg-white px-4 py-3 space-y-1.5 shadow-md">
           {tabs.map((tab) => {
             const isActive = currentTab === tab.id;
             return (
@@ -92,8 +92,8 @@ export const AcademicNav: React.FC<AcademicNavProps> = ({
                 }}
                 className={`block w-full text-left px-3 py-2 text-sm font-medium rounded-xs transition-colors cursor-pointer ${
                   isActive
-                    ? 'bg-[#f3f4f6] text-[#121417] font-bold border-l-4 border-[#121417]'
-                    : 'text-[#4b5563] hover:bg-[#f9fafb] hover:text-[#121417]'
+                    ? 'bg-[#f6f8fa] text-[#121417] font-bold border-l-4 border-[#121417]'
+                    : 'text-[#586069] hover:bg-[#f6f8fa] hover:text-[#121417]'
                 }`}
               >
                 {tab.label}

@@ -13,8 +13,8 @@ export const PROFILE = {
   title: 'AI/ML Engineer · Software Developer · Aspiring ML Researcher',
   
   // Profile Photo: Place your photo in the /public/assets/ folder and specify its filename here.
-  // Example: '/assets/avatar.jpg' or a remote image URL.
-  avatarUrl: '/assets/kritika_photo.jpg',
+  // Example: '/assets/meeee.png' or a remote image URL.
+  avatarUrl: '/assets/meeee.png',
   
   // Short roles and highlights
   role: 'Associate Software Engineer',

@@ -15,7 +15,6 @@ export const ReadingRoom: React.FC<ReadingRoomProps> = ({
 }) => {
   const [shelfMode, setShelfMode] = useState<'library' | 'recommended'>('library');
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedGenre, setSelectedGenre] = useState<string>('ALL');
   const [isRecommendModalOpen, setIsRecommendModalOpen] = useState(false);
 
   // Recommendations backed by localStorage
@@ -46,60 +45,16 @@ export const ReadingRoom: React.FC<ReadingRoomProps> = ({
 
   const [hoveredBookId, setHoveredBookId] = useState<string | null>(null);
 
-  const genreFilters = [
-    'ALL',
-    'NONFICTION',
-    'FICTION',
-    'SCI-FI',
-    'MYSTERY & THRILLER',
-    'FANTASY',
-    'ROMANCE',
-  ];
-
-  // Natural language query processor + keyword filtering
+  // Filtering books by search query
   const filteredBooks = useMemo(() => {
     const q = searchQuery.toLowerCase().trim();
+    if (!q) return READING_ROOM_BOOKS;
 
     return READING_ROOM_BOOKS.filter((book) => {
-      if (selectedGenre !== 'ALL') {
-        const matchesGenre = book.genres.some((g) => {
-          const upper = g.toUpperCase();
-          if (selectedGenre === 'NONFICTION') return upper.includes('NONFICTION') || upper.includes('SCIENCE') || upper.includes('PSYCHOLOGY');
-          if (selectedGenre === 'FICTION') return upper.includes('FICTION');
-          if (selectedGenre === 'SCI-FI') return upper.includes('SCI-FI') || upper.includes('SPECULATIVE');
-          if (selectedGenre === 'MYSTERY & THRILLER') return upper.includes('MYSTERY') || upper.includes('THRILLER');
-          if (selectedGenre === 'FANTASY') return upper.includes('FANTASY') || upper.includes('MAGICAL');
-          if (selectedGenre === 'ROMANCE') return upper.includes('ROMANCE');
-          return upper.includes(selectedGenre);
-        });
-        if (!matchesGenre) return false;
-      }
-
-      if (!q) return true;
-
-      if (q.includes('psycholog') || q.includes('cognitive') || q.includes('brain')) {
-        return (
-          book.genres.some((g) => /psychology|cognitive/i.test(g)) ||
-          /kahneman|norman|thinking/i.test(book.title + book.author + book.myNote)
-        );
-      }
-      if (q.includes('cozy') || q.includes('warm') || q.includes('cafe')) {
-        return /coffee|convenience|piranesi/i.test(book.title + book.author + book.genres.join(' '));
-      }
-      if (q.includes('short') || q.includes('quick')) {
-        return book.pages < 280;
-      }
-      if (q.includes('machine learning') || q.includes('ai') || q.includes('data')) {
-        return (
-          book.genres.some((g) => /machine learning|deep learning|systems|data/i.test(g)) ||
-          /pearl|goodfellow|kleppmann|chiang/i.test(book.author + book.title)
-        );
-      }
-
       const searchableString = `${book.title} ${book.author} ${book.genres.join(' ')} ${book.myNote} ${book.whyIReadIt}`.toLowerCase();
       return searchableString.includes(q);
     });
-  }, [searchQuery, selectedGenre]);
+  }, [searchQuery]);
 
   const filteredRecommendations = useMemo(() => {
     const q = searchQuery.toLowerCase().trim();
@@ -120,12 +75,12 @@ export const ReadingRoom: React.FC<ReadingRoomProps> = ({
 
   return (
     <div className="space-y-4 text-[#2e343b]">
-      {/* Standard Academic Header aligned with rest of site */}
+      {/* Standard Academic Header */}
       <div>
         <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-3">
           <div>
             <h1 className="academic-heading mt-0">The Reading Room</h1>
-            <p className="text-sm text-[#4b5563] mt-0.5">
+            <p className="text-sm text-[#586069] mt-0.5">
               A tactile personal library of physical book spines, curated readings, and community recommendations.
             </p>
           </div>
@@ -143,14 +98,14 @@ export const ReadingRoom: React.FC<ReadingRoomProps> = ({
 
       {/* Controls Bar: Sub-Tabs & Filter Search */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1">
-        <div className="inline-flex border border-[#d1d5db] bg-[#f9fafb] p-1 rounded-xs text-xs">
+        <div className="inline-flex border border-[#d1d5db] bg-[#f6f8fa] p-1 rounded-xs text-xs">
           <button
             type="button"
             onClick={() => setShelfMode('library')}
             className={`px-3 py-1 rounded-xs transition-colors cursor-pointer ${
               shelfMode === 'library'
                 ? 'bg-white text-[#121417] font-bold border border-[#d1d5db] shadow-2xs'
-                : 'text-[#4b5563] hover:text-[#121417]'
+                : 'text-[#586069] hover:text-[#121417]'
             }`}
           >
             My Library ({READING_ROOM_BOOKS.length})
@@ -161,7 +116,7 @@ export const ReadingRoom: React.FC<ReadingRoomProps> = ({
             className={`px-3 py-1 rounded-xs transition-colors cursor-pointer ml-1 ${
               shelfMode === 'recommended'
                 ? 'bg-white text-[#121417] font-bold border border-[#d1d5db] shadow-2xs'
-                : 'text-[#4b5563] hover:text-[#121417]'
+                : 'text-[#586069] hover:text-[#121417]'
             }`}
           >
             To-Read Shelf ({recommendations.length})
@@ -173,7 +128,7 @@ export const ReadingRoom: React.FC<ReadingRoomProps> = ({
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Filter by title, author..."
+            placeholder="Search title, author..."
             className="w-full text-xs text-[#121417] placeholder-[#9ca3af] bg-white border border-[#d1d5db] rounded-xs px-3 py-1.5 focus:outline-hidden focus:border-[#121417]"
           />
           {searchQuery && (
@@ -189,42 +144,14 @@ export const ReadingRoom: React.FC<ReadingRoomProps> = ({
         </div>
       </div>
 
-      {/* Genre Pills: Black and Charcoal styling */}
-      {shelfMode === 'library' && (
-        <div className="flex flex-wrap items-center gap-1.5 text-xs pt-1">
-          <span className="text-[#4b5563] text-xs uppercase font-medium mr-1">
-            GENRES:
-          </span>
-          {genreFilters.map((genre) => (
-            <button
-              key={genre}
-              type="button"
-              onClick={() => setSelectedGenre(genre)}
-              className={`px-2.5 py-1 rounded-xs text-[11px] uppercase transition-colors cursor-pointer border ${
-                selectedGenre === genre
-                  ? 'border-[#121417] bg-[#121417] text-white font-bold'
-                  : 'border-[#d1d5db] bg-white text-[#4b5563] hover:bg-[#f9fafb]'
-              }`}
-            >
-              {genre}
-            </button>
-          ))}
-        </div>
-      )}
-
       {/* THE PHYSICAL WOODEN BOOKSHELF */}
       <div className="space-y-1.5 pt-2">
-        <div className="flex items-center justify-between text-xs text-[#6b7280]">
-          <span className="font-mono text-[11px] uppercase">OAK GALLERY SHELF · LEVEL 01</span>
-          <span className="hidden sm:inline font-mono text-[11px]">click any book spine to pull forward</span>
-        </div>
-
-        <div className="relative bg-[#faf7f2] border border-[#d1d5db] rounded-xs p-4 sm:p-6 pt-10 shadow-2xs overflow-x-auto min-h-[400px]">
+        <div className="relative bg-[#faf7f2] border border-[#e1e4e8] rounded-xs p-4 sm:p-6 pt-8 shadow-2xs overflow-x-auto min-h-[380px]">
           <div className="inline-flex flex-col min-w-full justify-end">
             <div className="flex items-end space-x-1.5 sm:space-x-2.5 min-w-max mx-auto sm:mx-0 px-2">
               {shelfMode === 'library' ? (
                 filteredBooks.length === 0 ? (
-                  <div className="py-20 text-center w-full text-sm italic text-[#6b7280]">
+                  <div className="py-20 text-center w-full text-sm italic text-[#586069]">
                     No volumes on the shelf match "{searchQuery}".
                   </div>
                 ) : (
@@ -289,7 +216,7 @@ export const ReadingRoom: React.FC<ReadingRoomProps> = ({
 
                         {/* Hover Tooltip */}
                         {isHovered && (
-                          <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-[#121417] text-white text-[10px] font-mono py-1 px-2.5 rounded-xs shadow-md whitespace-nowrap pointer-events-none z-40 flex items-center gap-1.5 border border-[#374151]">
+                          <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-[#121417] text-white text-[10px] font-mono py-1 px-2.5 rounded-xs shadow-md whitespace-nowrap pointer-events-none z-40 flex items-center gap-1.5 border border-white/30">
                             <span>★ {book.rating}/5</span>
                             <span>·</span>
                             <span>{book.pages}p</span>
@@ -302,7 +229,7 @@ export const ReadingRoom: React.FC<ReadingRoomProps> = ({
               ) : (
                 /* Recommended Shelf */
                 filteredRecommendations.length === 0 ? (
-                  <div className="py-20 text-center w-full text-sm italic text-[#6b7280]">
+                  <div className="py-20 text-center w-full text-sm italic text-[#586069]">
                     No recommended volumes found. Click "RECOMMEND A BOOK" to add one!
                   </div>
                 ) : (
@@ -386,15 +313,15 @@ export const ReadingRoom: React.FC<ReadingRoomProps> = ({
         </div>
       </div>
 
-      {/* BOOK DETAIL MODAL (THE PULL-FORWARD DOSSIER) */}
+      {/* BOOK DETAIL MODAL */}
       {activeBook && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/60 backdrop-blur-2xs"
           role="dialog"
           aria-modal="true"
         >
-          <div className="relative w-full max-w-2xl bg-white border border-[#d1d5da] shadow-xl rounded-xs p-6 sm:p-8 max-h-[92vh] overflow-y-auto">
-            <div className="flex justify-between items-start border-b border-[#e5e7eb] pb-4 mb-5">
+          <div className="relative w-full max-w-2xl bg-white border border-[#d1d5db] shadow-xl rounded-xs p-6 sm:p-8 max-h-[92vh] overflow-y-auto">
+            <div className="flex justify-between items-start border-b border-[#e1e4e8] pb-4 mb-5">
               <div>
                 <span className="text-[11px] uppercase tracking-wider text-[#121417] block font-bold">
                   LIBRARY VOLUME DOSSIER · READING ROOM
@@ -402,13 +329,13 @@ export const ReadingRoom: React.FC<ReadingRoomProps> = ({
                 <h2 className="text-2xl font-bold text-[#121417] leading-snug mt-1">
                   {activeBook.title}
                 </h2>
-                <div className="text-xs text-[#4b5563] mt-0.5">
+                <div className="text-xs text-[#586069] mt-0.5">
                   Author: <strong className="text-[#121417]">{activeBook.author}</strong> ({activeBook.year})
                 </div>
               </div>
               <button
                 onClick={() => setActiveBook(null)}
-                className="p-1 text-[#6b7280] hover:text-[#121417] rounded transition-colors cursor-pointer"
+                className="p-1 text-[#586069] hover:text-[#121417] rounded transition-colors cursor-pointer"
                 aria-label="Close Book View"
               >
                 <X className="w-5 h-5" />
@@ -447,8 +374,8 @@ export const ReadingRoom: React.FC<ReadingRoomProps> = ({
               </div>
 
               <div className="sm:col-span-2 space-y-2.5 text-xs">
-                <div className="p-2.5 bg-[#f9fafb] border border-[#e5e7eb] rounded-xs">
-                  <span className="text-[10px] uppercase text-[#6b7280] block mb-0.5 font-semibold">STATUS</span>
+                <div className="p-2.5 bg-[#f6f8fa] border border-[#e1e4e8] rounded-xs">
+                  <span className="text-[10px] uppercase text-[#586069] block mb-0.5 font-semibold">STATUS</span>
                   <span className="font-semibold text-[#121417] uppercase">
                     {activeBook.status === 'reading'
                       ? 'Currently Reading'
@@ -460,7 +387,7 @@ export const ReadingRoom: React.FC<ReadingRoomProps> = ({
                 </div>
 
                 {activeBook.recommenderName && (
-                  <div className="p-2.5 bg-[#f3f4f6] border border-[#e5e7eb] rounded-xs">
+                  <div className="p-2.5 bg-[#f1f5f9] border border-[#e1e4e8] rounded-xs">
                     <span className="text-[10px] uppercase text-[#121417] block mb-0.5 font-bold">
                       RECOMMENDED BY
                     </span>
@@ -470,11 +397,11 @@ export const ReadingRoom: React.FC<ReadingRoomProps> = ({
                   </div>
                 )}
 
-                <div className="p-2.5 bg-[#f9fafb] border border-[#e5e7eb] rounded-xs">
-                  <span className="text-[10px] uppercase text-[#6b7280] block mb-0.5 font-semibold">GENRES</span>
+                <div className="p-2.5 bg-[#f6f8fa] border border-[#e1e4e8] rounded-xs">
+                  <span className="text-[10px] uppercase text-[#586069] block mb-0.5 font-semibold">GENRES</span>
                   <div className="flex flex-wrap gap-1 text-xs text-[#121417]">
                     {activeBook.genres.map((g) => (
-                      <span key={g} className="px-1.5 py-0.5 bg-white border border-[#e5e7eb] rounded-xs">
+                      <span key={g} className="px-1.5 py-0.5 bg-white border border-[#e1e4e8] rounded-xs">
                         {g}
                       </span>
                     ))}
@@ -484,12 +411,12 @@ export const ReadingRoom: React.FC<ReadingRoomProps> = ({
             </div>
 
             {/* Curatorial Notes & Marginalia */}
-            <div className="space-y-3.5 text-xs text-[#374151]">
+            <div className="space-y-3.5 text-xs text-[#2e343b]">
               <div>
                 <h3 className="text-xs uppercase tracking-wider text-[#121417] font-bold mb-1">
                   WHY I READ THIS VOLUME
                 </h3>
-                <p className="leading-relaxed bg-[#f9fafb] p-3 border-l-2 border-[#121417] rounded-r-xs">
+                <p className="leading-relaxed bg-[#f6f8fa] p-3 border-l-2 border-[#121417] rounded-r-xs">
                   {activeBook.whyIReadIt}
                 </p>
               </div>
@@ -502,8 +429,8 @@ export const ReadingRoom: React.FC<ReadingRoomProps> = ({
               </div>
 
               {activeBook.favoriteQuote && (
-                <div className="p-3 bg-[#f9fafb] border border-[#e5e7eb] rounded-xs">
-                  <span className="text-[10px] uppercase text-[#6b7280] block mb-1 font-semibold">
+                <div className="p-3 bg-[#f6f8fa] border border-[#e1e4e8] rounded-xs">
+                  <span className="text-[10px] uppercase text-[#586069] block mb-1 font-semibold">
                     FAVORITE PASSAGE / MARGINALIA
                   </span>
                   <p className="font-serif italic text-sm text-[#121417] leading-snug">

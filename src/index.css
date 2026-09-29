@@ -4,20 +4,27 @@
   :root {
     --global-font: -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
     --global-mono-font: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    
+    /* Academic slate & deep charcoal palette - NO light blue */
+    --academic-heading: #121417;     /* Deep black / charcoal */
+    --academic-text: #2e343b;        /* High-contrast readable charcoal */
+    --academic-meta: #586069;        /* Neutral muted gray for meta/citations */
+    --academic-border: #e1e4e8;      /* Clean neutral border */
+    --academic-bg-subtle: #f6f8fa;   /* Subtle clean card background */
   }
 }
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  color: #2e343b; /* Charcoal body text */
+  color: #2e343b;
   background-color: #ffffff;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Charcoal & Black academic link style */
+/* Academic clean link style: Deep charcoal, solid black with underline on hover */
 a {
-  color: #121417; /* Deep charcoal black */
+  color: #121417;
   text-decoration: none;
   transition: color 0.15s ease-in-out;
 }
@@ -27,7 +34,7 @@ a:hover {
   text-decoration: underline;
 }
 
-/* Headings in bold black / dark charcoal */
+/* Headings in deep charcoal / black */
 h1, h2, h3, h4, h5, h6 {
   font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   font-weight: 700;
@@ -35,29 +42,29 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.25;
 }
 
-/* Academic section bottom line divider */
+/* Academic section divider */
 .academic-heading {
   font-size: 1.5rem;
   font-weight: 700;
   color: #121417;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e1e4e8;
   padding-bottom: 0.35rem;
   margin-top: 1.75rem;
   margin-bottom: 1rem;
 }
 
-/* Custom scrollbars */
+/* Scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #f3f4f6;
+  background: #f6f8fa;
 }
 ::-webkit-scrollbar-thumb {
-  background: #9ca3af;
+  background: #d1d5db;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #6b7280;
+  background: #9ca3af;
 }
